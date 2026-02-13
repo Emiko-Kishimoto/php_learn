@@ -1,3 +1,4 @@
+<!-- http://localhost:8080/php_learn/php_basic/06_forms/02/index.php# -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,7 +16,7 @@
       <h2>POST送信</h2>
       <section>
         <h3>送信ボタンをクリックしたら、recive.phpに「[入力した名前]さんの年齢は[入力した年齢]歳です」と表示されるように、受信したデータを使用して表示してください。</h3>
-        <form action="#" method="post">
+        <form action="recive.php" method="post">
           <p>
             名前: <input type="text" name="name" id="name">
           </p>

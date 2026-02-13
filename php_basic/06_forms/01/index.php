@@ -1,3 +1,4 @@
+<!-- http://localhost:8080/php_learn/php_basic/06_forms/01/index.php -->
 <!DOCTYPE html>
 <html lang="ja">
 

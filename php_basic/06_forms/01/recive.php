@@ -16,6 +16,9 @@
       <section>
         <?php
         // ここからPHPを書く
+        $name = $_GET["name"];
+        $age = $_GET["age"];
+        echo $name ."さんの年齢は". $age . "歳です。";
         ?>
       </section>
     </section>

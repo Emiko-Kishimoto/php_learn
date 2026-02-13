@@ -1,4 +1,4 @@
-<!-- http://localhost:8080/php_basic/02_operators/index.php -->
+<!-- http://localhost:8080/php_learn/php_basic/02_operators/index.php -->
 <!DOCTYPE html>
 <html lang="ja">
 

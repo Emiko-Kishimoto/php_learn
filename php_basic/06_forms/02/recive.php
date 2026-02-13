@@ -16,6 +16,9 @@
       <section>
         <?php
         // ここからPHPを書く
+        $name = $_POST["name"];
+        $age = $_POST["age"];
+        echo "<p>「" .$name . "さんの年齢は". $age . "歳です」</p>";
         ?>
       </section>
     </section>

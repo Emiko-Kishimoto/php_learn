@@ -1,4 +1,4 @@
-<!-- http://localhost:8080/php_basic/05_arrays/index.php -->
+<!-- http://localhost:8080/php_learn/php_basic/05_arrays/index.php -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -38,7 +38,8 @@
         <div class="answer">
           <!-- ここからPHPを書く -->
            <?php 
-           $fruits[] = ["もも","ぶどう"];
+           $fruits[] = "もも";
+           array_push($fruits,"ぶどう");
            var_dump($fruits);
             ?>
           <!-- ここまでPHPを書く -->
@@ -48,6 +49,11 @@
         <h3>for文を使って<code>$fruits</code>に含まれる全ての果物を1行ずつ表示してください。</h3>
         <div class="answer">
           <!-- ここからPHPを書く -->
+          <?php 
+          for($i = 0;$i < count($fruits);$i++){
+          echo $fruits[$i]. "<br>";
+           }
+           ?>
 
           <!-- ここまでPHPを書く -->
         </div>
@@ -66,7 +72,9 @@
         ?>
         <div class="answer">
           <!-- ここからPHPを書く -->
-
+          <?php 
+          echo $exam_scores['井川']['数学'];
+          ?>
           <!-- ここまでPHPを書く -->
         </div>
       </section>
@@ -75,6 +83,15 @@
         <p>国語: 76点 | 数学: 48点 | 英語: 92点</p>
         <div class="answer">
           <!-- ここからPHPを書く -->
+          <p><?php echo "国語：" .$exam_scores['浦野']['国語'];?></p>
+          <p><?php echo "数学：" .$exam_scores['浦野']['数学'];?></p>
+          <p><?php echo "英語：" .$exam_scores['浦野']['英語'];?></p>
+
+          <?php
+          foreach($exam_scores["浦野"] as $subject => $score ){
+            echo $subject . "：" .$score . "点|";
+          }
+        ?>
 
           <!-- ここまでPHPを書く -->
         </div>
@@ -117,7 +134,33 @@
         </table>
         <div class="answer">
           <!-- ここからPHPを書く -->
-
+           <table>
+           <thead>
+            <tr>
+              <th>名前</th>
+              <th>国語</th>
+              <th>数学</th>
+              <th>英語</th>
+              <th>合計</th>
+          </tr>
+          </thead>
+          <tbody>
+         
+           <?php foreach($exam_scores as $name => $subject):
+            $total_score = 0; ?> 
+          
+          <tr>
+              <td> <?php echo $name;?></td>
+          <?php foreach($subject as $score): ?>
+              <td> <?php echo $score;?></td>
+          <?php $total_score += $score; ?>
+          <?php endforeach; ?>
+              <td> <?php echo $total_score;?></td>
+          </tr>
+          <?php endforeach; ?>
+        
+          </tbody>
+          </table>
           <!-- ここまでPHPを書く -->
         </div>
       </section>

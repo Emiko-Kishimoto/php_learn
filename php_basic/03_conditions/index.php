@@ -1,4 +1,4 @@
-<!-- http://localhost:8080/php_basic/03_conditions/index.php -->
+<!-- http://localhost:8080/php_learn/php_basic/03_conditions/index.php -->
 <!DOCTYPE html>
 <html lang="ja">
 
