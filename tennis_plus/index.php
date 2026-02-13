@@ -18,6 +18,14 @@ if($fp){
 
 // TODO: ソート処理
 // 投稿日の降順（日付が新しい順）に並び替え
+if(!empty($info_array)){
+  // ソートの基準となる要素を抜き出す
+  $dates = array_column($info_array,2);
+  var_dump($dates);
+  // array_multisort(並べ替える配列,ソートオプション,連動してソートする配列);
+  array_multisort($dates,SORT_DESC,$info_array);
+}
+
 
 ?>
 <!doctype html>
