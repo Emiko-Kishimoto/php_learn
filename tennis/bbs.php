@@ -1,18 +1,36 @@
 <!-- http://localhost:8080/php_learn/tennis/bbs.php -->
+ <?php include '.includes/includes_login.php'; ?>
  <?php 
+//  クッキーの読み込み
+if(isset($_COOKIE['name'])){
+  $name = $_COOKIE['name'];
+}else{
+  $name = '';
+}
+//  1ページに表示される書き込みの数
+$num = 10;
+
  // DBへ接続
 $dsn = 'mysql:host=localhost;dbname=tennis;charset=utf8';
 $user = 'tennisuser';
 $password = 'password';
+
+$page = 1;
+if(isset($_GET['page']) && $_GET['page'] > 1){
+   $page = intval($_GET['page']);
+}
+
 try{
     // PDOインスタンス作成
     // PDOは「データベースとの接続窓口」
     $db = new PDO($dsn,$user,$password);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
     // プリペアードステートメント作成
-    $sql = 'SELECT * FROM bbs ORDER BY date DESC';
+    $sql = 'SELECT * FROM bbs ORDER BY date DESC LIMIT :page,:num';
     $stmt = $db->prepare($sql);
-
+    $page = ($page - 1)* $num;
+    $stmt->bindParam(':page',$page,PDO::PARAM_INT);
+    $stmt->bindParam(':num',$num,PDO::PARAM_INT);
     // SQLの実行
     $stmt->execute();
     // 取得したレコードを連想配列の形で受け取る
@@ -48,7 +66,7 @@ try{
           </div>
           <div class="form-group">
             <label>名前</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
           </div>
           <div class="form-group">
             <textarea name="body" class="form-control" rows="5"></textarea>
@@ -82,6 +100,31 @@ try{
         <hr>
         <?php endforeach; ?>
 
+        <?php 
+        try{
+          $sql = 'SELECT COUNT(*) FROM bbs';
+          $stmt = $db->prepare($sql);
+          $stmt->execute();
+        }catch(PDOException $e){
+          exit('エラー：'.$e->getMessage());
+        }
+
+        // 書き込み件数を取得
+          $comments = $stmt->fetchColumn();
+          // echo $comments;
+
+          // ページ数を計算
+          $max_page = ceil($comments / $num);
+          if($max_page >= 1):
+        ?>
+        <nav>
+          <ul class="pagination">
+            <?php for($i= 1; $i <= $max_page; $i++): ?>
+              <li class="page-item"><a href="bbs.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <?php endfor; ?>
+          </ul>
+        </nav>
+        <?php endif; ?>
         <!-- 本文ここまで -->
       </div>
     </main>

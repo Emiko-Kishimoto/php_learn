@@ -10,6 +10,6 @@
            <li class="nav-item"><a class="nav-link" href="upload.php">画像アップロード</a></li>
           <li class="nav-item"><a class="nav-link" href="album.php">アルバム</a></li>
           <li class="nav-item"><a class="nav-link" href="bbs.php">掲示板</a></li>
-        </ul>
+          <li class="nav-item"><a class="nav-link" href="logout.php">ログアウト</a></li>
       </div>
     </nav>

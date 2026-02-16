@@ -1,4 +1,5 @@
 <!-- http://localhost:8080/tennis/index.php -->
+ <?php include '.includes/includes_login.php'; ?>
 <?php $fp = fopen("info.txt","r");
 // 空の配列（ファイル1行ずつ値を入れていく） 
       $line = array();

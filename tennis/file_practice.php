@@ -1,5 +1,5 @@
 <!-- http://localhost:8080/tennis/file_practice.php -->
-
+<?php include '.includes/includes_login.php'; ?>
 <?php 
 // ファイルを開く
 // ファイルを開くモード

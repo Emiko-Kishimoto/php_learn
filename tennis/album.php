@@ -1,5 +1,6 @@
 <!-- http://localhost:8080/tennis/album.php -->
  <!--  -->
+<?php include '.includes/includes_login.php'; ?>
 <?php 
 $images = array();
 if($handle = opendir("./album")){

@@ -1,6 +1,6 @@
 <!-- http://localhost:8080/tennis/upload.php -->
 
-
+<?php include '.includes/includes_login.php'; ?>
 
 <!doctype html>
 <html lang="ja" >

@@ -1,25 +1,47 @@
 <!-- http://localhost:8080/php_learn/tennis_plus/info.php?id=698d60d89af56 -->
 <?php
 // TODO: ID取得とバリデーション
-$id = $_GET["id"];
-$target = array();
-$filename = "info/info.csv";
-$fp = fopen($filename,"r");
+// $id = $_GET["id"];
+// $target = array();
+// $filename = "info/info.csv";
+// $fp = fopen($filename,"r");
 
-if($fp){
-  while($row = fgetcsv($fp)){
-    if($row[0] === $id){
-    // $target = [$row[0],$row[1],$row[2],$row[3],$row[4]];
-    $target = $row;
-    break;
-    }
-  }
-  fclose($fp);
-}else{
-  echo "ファイルが開けませんでした。";
-}
+// if($fp){
+//   while($row = fgetcsv($fp)){
+//     if($row[0] === $id){
+//     // $target = [$row[0],$row[1],$row[2],$row[3],$row[4]];
+//     $target = $row;
+//     break;
+//     }
+//   }
+//   fclose($fp);
+// }else{
+//   echo "ファイルが開けませんでした。";
+// }
 
 // TODO: CSV読み込みと記事検索
+
+require_once __DIR__ . '/func/functions.php';
+$id = $_GET['id'];
+try{
+// インクリメント作成・接続
+$db = db_connect();
+$sql = 'SELECT id,author,title,date,body FROM info WHERE id= :id';
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':id',$id,PDO::PARAM_INT);
+
+$stmt->execute();
+
+// 結果セットを連想配列の形で取得
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+}catch(PDOException $e){
+  exit('エラー：'.$e->getMessage());
+
+}
+
+
 
 ?>
 <!doctype html>
@@ -36,22 +58,23 @@ if($fp){
   <?php include('navbar.php');  ?>
 
   <main role="main" class="container" style="padding:60px 15px 0">
+   
     <div>
       <!-- ここから「本文」-->
       <h1 class="my-5">お知らせ</h1>
-      <?php if(count($target) > 0 ): ?>
+      <?php if(count($result) > 0 ): ?>
       <!-- TODO: 記事詳細を表示する -->
        <article class="info">
         <header class="info-header">
-          <h2 class="info-titile"><?php echo $target[1]; ?></h2>
+          <h2 class="info-titile"><?php echo $result['title']; ?></h2>
           <div class="info-data">
-            <time datetime="<?php echo $target[2]; ?>"><?php echo $target[2]; ?></time>
-            <p class="m-0"><?php echo $target[3]; ?></p>
+            <time datetime="<?php echo $result['date']; ?>"><?php echo $result['date']; ?></time>
+            <p class="m-0"><?php echo $result['author']; ?></p>
           </div>
         </header>
         <section class="info-body my-3">
           <p>
-            <?php echo nl2br($target[4]); ?>
+            <?php echo nl2br($result['body']); ?>
           </p>
         </section>
        </article>

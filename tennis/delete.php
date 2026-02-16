@@ -1,3 +1,4 @@
+<?php include '.includes/includes_login.php'; ?>
 <?php
 $id = $_POST['id'];
 $pass = $_POST['pass'];

@@ -1,5 +1,6 @@
 <!-- http://localhost:8080/tennis/index.php -->
- <!--  -->
+<?php include '.includes/includes_login.php'; ?>
+
 <!-- <?php $info = file_get_contents("info.txt"); ?> -->
 
 <!-- ファイルを開く -->
