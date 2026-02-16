@@ -1,4 +1,4 @@
-<!-- http://localhost:8080/php_learn/tennis_plus/index2.php -->
+<!-- http://localhost:8080/php_learn/tennis_plus/index.php -->
 <?php
 
 // TODO: CSV読み込み処理
