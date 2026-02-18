@@ -1,6 +1,12 @@
 <!-- http://localhost:8080/php_learn/tennis/bbs.php -->
  <?php include '.includes/includes_login.php'; ?>
  <?php 
+// htmlspecialcharsの代替え関数
+function h($str){
+  return htmlspecialchars($str,ENT_QUOTES,'UTF-8');
+}
+
+
 //  クッキーの読み込み
 if(isset($_COOKIE['name'])){
   $name = $_COOKIE['name'];
@@ -66,7 +72,7 @@ try{
           </div>
           <div class="form-group">
             <label>名前</label>
-            <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
+            <input type="text" name="name" class="form-control" value="<?php echo htmlspecialchars($name,ENT_QUOTES,'UTF-8'); ?>">
           </div>
           <div class="form-group">
             <textarea name="body" class="form-control" rows="5"></textarea>
