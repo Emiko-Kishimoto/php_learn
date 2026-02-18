@@ -2,7 +2,7 @@
 require_once __DIR__ . '/func/functions.php';
 
 // TODO: ID取得とバリデーション
-$id = (int)$_GET['id'];
+$id = (int)$_POST['id'];
 
 // DB接続
 try {
@@ -40,7 +40,7 @@ try {
       <?php
       // debug_check_array($target);
       ?>
-      <h1 class="my-5">お知らせ</h1>
+      <h1 class="my-5">お知らせ - 削除確認</h1>
       <!-- TODO: 記事詳細を表示する -->
       <article class="info">
         <header class="info-header">
@@ -56,12 +56,9 @@ try {
           </p>
         </section>
       </article>
-      <p><a href="./">トップページへ戻る</a></p>
-      <form action="info_edit.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $target['id']; ?>">
-        <input type="submit" value="編集" class="btn btn-info">
-      </form>
-      <form action="info_del.php" method="post">
+      <p>以上の内容を削除してよろしいですか？</p>
+      <a href="./index.php" class="btn btn-primary">トップページ戻る</a>
+      <form action="info_del_do.php" method="post">
         <input type="hidden" name="id" value="<?php echo $target['id']; ?>">
         <input type="submit" value="削除" class="btn btn-danger">
       </form>
