@@ -43,7 +43,7 @@ try {
       <h1 class="my-5">お知らせ</h1>
       <?php if($_SESSION['role'] === 1): ?>
       <p><a href="info_add.php">お知らせ新規登録</a></p>
-      <p><a href="info_add.php">ユーザー一覧</a></p>
+      <p><a href="user.php">ユーザー一覧</a></p>
       <?php endif; ?>
       <?php if (count($info_array) > 0): ?>
         <ul class="list-group my-3">

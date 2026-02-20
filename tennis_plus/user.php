@@ -4,7 +4,8 @@ require_once __DIR__ . '/func/functions.php';
 try {
   $db = db_connect();
   // usersテーブルから全レコードを、連想配列の形で取得
-  $sql = 'SELECT * FROM users';
+  $sql = 'SELECT users.id,users.name AS users_name, roles.name AS role_name FROM users
+INNER JOIN roles ON users.role = roles.id';
   $stmt = $db->prepare($sql);
   $stmt->execute();
 
@@ -13,7 +14,7 @@ try {
   exit('エラー: ' . $e->getMessage());
 }
 
-$roles = get_roles_list();
+// $roles = get_roles_list();
 ?>
 <!doctype html>
 <html lang="ja">
@@ -53,8 +54,8 @@ $roles = get_roles_list();
             <?php foreach ($users_array as $user): ?>
               <tr>
                 <td><?php echo $user['id']; ?></td>
-                <td><?php echo $user['name']; ?></td>
-                <td><?php echo $roles[$user['role']] ; ?></td>
+                <td><?php echo $user['users_name']; ?></td>
+                <td><?php echo $user['role_name'] ; ?></td>
                 <td>
                   <form action="user_edit.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
