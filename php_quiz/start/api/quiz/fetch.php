@@ -12,10 +12,16 @@ try{
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($questions);
+    // var_dump($questions);
+    output_json($questions);
 }catch(PDOException $e){
+    // レスポンスコードを設定
+    http_response_code(500);
+    // タイムゾーンを設定する関数
+    date_default_timezone_set('Asia/Tokyo');
+    $err_msg = '[' .date('Y-m-d H:i:s') .']'. $e->getMessage() ."\n";
     // エラー文をログファイルに書き込み
-    echo $e->getMessage();
+    file_put_contents('../../log.error.txt',$err_msg,FILE_APPEND);
 }
 
 ?>
